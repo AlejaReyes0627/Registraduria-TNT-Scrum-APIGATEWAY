@@ -124,9 +124,9 @@ def modificarEstudiante(id):
 def eliminarEstudiante(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-security"] + '/usuarios/' + id
-    response = requests.delete(url, headers=headers)
-    json = response.json()
-    return jsonify(json)
+    print(url)
+    response =requests.delete(url, headers=headers)
+    return jsonify(response.status_code==204)
 
 @app.route("/", methods=['GET'])
 def test():
