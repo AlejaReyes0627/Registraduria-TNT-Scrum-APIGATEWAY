@@ -34,8 +34,10 @@ def create_token():
         return jsonify({"msg": "Bad username or password"}), 401
 
 
+#######################################################
 @app.before_request
 def before_request_callback():
+    print("1")
     endPoint=limpiarURL(request.path)
     excludedRoutes=["/login"]
     if excludedRoutes.__contains__(request.path):
@@ -44,6 +46,7 @@ def before_request_callback():
     elif verify_jwt_in_request():
         usuario = get_jwt_identity()
         if usuario["rol"]is not None:
+            print("2")
             tienePersmiso=validarPermiso(endPoint,request.method,usuario["rol"]["_id"])
             if not tienePersmiso:
                 return jsonify({"message": "Permission denied"}), 401
@@ -58,21 +61,30 @@ def limpiarURL(url):
     return url
 
 def validarPermiso(endPoint,metodo,idRol):
+    print("3")
     url=dataConfig["url-backend-security"]+"/permisos-roles/validar-permiso/rol/"+str(idRol)
+    print(idRol)
+    print(url)
     tienePermiso=False
     headers = {"Content-Type": "application/json; charset=utf-8"}
     body={
         "url":endPoint,
         "metodo":metodo
     }
+    print(body)
     response = requests.get(url,json=body, headers=headers)
+    print("4")
     try:
         data=response.json()
+        print("5")
         if("_id" in data):
             tienePermiso=True
+            print("6")
     except:
         pass
     return tienePermiso
+##########################################################################
+
 
 @app.route("/usuarios",methods=['GET'])
 def getEstudiantes():
