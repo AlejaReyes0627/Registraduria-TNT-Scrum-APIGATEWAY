@@ -87,7 +87,7 @@ def validarPermiso(endPoint,metodo,idRol):
 
 
 @app.route("/usuarios",methods=['GET'])
-def getEstudiantes():
+def getUsuarios():
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-security"] + '/usuarios'
     response = requests.get(url, headers=headers)
@@ -95,7 +95,7 @@ def getEstudiantes():
     return jsonify(json)
 
 @app.route("/usuarios",methods=['POST'])
-def crearEstudiante():
+def crearUsuario():
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-security"] + '/usuarios'
@@ -104,7 +104,7 @@ def crearEstudiante():
     return jsonify(json)
 
 @app.route("/usuarios/<string:id>",methods=['GET'])
-def getEstudiante(id):
+def getUsuario(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-security"] + '/usuarios/'+id
     response = requests.get(url, headers=headers)
@@ -112,7 +112,7 @@ def getEstudiante(id):
     return jsonify(json)
 
 @app.route("/usuarios/<string:id>",methods=['PUT'])
-def modificarEstudiante(id):
+def modificarUsuario(id):
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-security"] + '/usuarios/'+id
@@ -121,7 +121,7 @@ def modificarEstudiante(id):
     return jsonify(json)
 
 @app.route("/usuarios/<string:id>",methods=['DELETE'])
-def eliminarEstudiante(id):
+def eliminarUsuario(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-security"] + '/usuarios/' + id
     print(url)
