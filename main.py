@@ -101,6 +101,7 @@ def crearUsuario():
     url = dataConfig["url-backend-security"] + '/usuarios'
     response = requests.post(url, headers=headers,json=data)
     json = response.json()
+    print(json)
     return jsonify(json)
 
 @app.route("/usuarios/<string:id>",methods=['GET'])
