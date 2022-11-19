@@ -193,3 +193,73 @@ if __name__ == '__main__':
     print("Server running : "+"http://"+dataConfig["url-backend"]+":" +
           str(dataConfig["port"]))
     serve(app, host=dataConfig["url-backend"], port=dataConfig["port"])
+
+#################################PARTIDOS#########################################
+
+
+@app.route("/partidos", methods=['GET'])
+def getUsuarios():
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/partidos'
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+
+@app.route("/partidos", methods=['POST'])
+def crearUsuario():
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/partidos'
+    response = requests.post(url, headers=headers, json=data)
+    json = response.json()
+    print(json)
+    return jsonify(json)
+
+
+@app.route("/partidos/<string:id>", methods=['GET'])
+def getUsuario(id):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/partidos/'+id
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+
+@app.route("/partidos/<string:id>", methods=['PUT'])
+def modificarUsuario(id):
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/partidos/'+id
+    response = requests.put(url, headers=headers, json=data)
+    json = response.json()
+    return jsonify(json)
+
+
+@app.route("/partidos/<string:id>", methods=['DELETE'])
+def eliminarUsuario(id):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/partidos/' + id
+    print(url)
+    response = requests.delete(url, headers=headers)
+    return jsonify(response.status_code == 204)
+
+
+@app.route("/", methods=['GET'])
+def test():
+    json = {}
+    json["message"] = "Server running ..."
+    return jsonify(json)
+
+
+def loadFileConfig():
+    with open('config.json') as f:
+        data = json.load(f)
+    return data
+
+
+if __name__ == '__main__':
+    dataConfig = loadFileConfig()
+    print("Server running : "+"http://"+dataConfig["url-backend"]+":" +
+          str(dataConfig["port"]))
+    serve(app, host=dataConfig["url-backend"], port=dataConfig["port"])
