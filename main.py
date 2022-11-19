@@ -83,48 +83,94 @@ def validarPermiso(endPoint,metodo,idRol):
     except:
         pass
     return tienePermiso
-##########################################################################
+##################################CANDIDATOS########################################
 
 
-@app.route("/usuarios",methods=['GET'])
+@app.route("/candidatos",methods=['GET'])
 def getUsuarios():
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-security"] + '/usuarios'
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos'
     response = requests.get(url, headers=headers)
     json = response.json()
     return jsonify(json)
 
-@app.route("/usuarios",methods=['POST'])
+@app.route("/candidatos",methods=['POST'])
 def crearUsuario():
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-security"] + '/usuarios'
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos'
     response = requests.post(url, headers=headers,json=data)
     json = response.json()
     print(json)
     return jsonify(json)
 
-@app.route("/usuarios/<string:id>",methods=['GET'])
+@app.route("/candidatos/<string:id>",methods=['GET'])
 def getUsuario(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-security"] + '/usuarios/'+id
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos/'+id
     response = requests.get(url, headers=headers)
     json = response.json()
     return jsonify(json)
 
-@app.route("/usuarios/<string:id>",methods=['PUT'])
+@app.route("/candidatos/<string:id>",methods=['PUT'])
 def modificarUsuario(id):
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-security"] + '/usuarios/'+id
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos/'+id
     response = requests.put(url, headers=headers, json=data)
     json = response.json()
     return jsonify(json)
 
-@app.route("/usuarios/<string:id>",methods=['DELETE'])
+@app.route("/candidatos/<string:id>",methods=['DELETE'])
 def eliminarUsuario(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-security"] + '/usuarios/' + id
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos/' + id
+    print(url)
+    response =requests.delete(url, headers=headers)
+    return jsonify(response.status_code==204)
+
+#################################MESAS#########################################
+
+
+@app.route("/candidatos",methods=['GET'])
+def getUsuarios():
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos'
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/candidatos",methods=['POST'])
+def crearUsuario():
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos'
+    response = requests.post(url, headers=headers,json=data)
+    json = response.json()
+    print(json)
+    return jsonify(json)
+
+@app.route("/candidatos/<string:id>",methods=['GET'])
+def getUsuario(id):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos/'+id
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/candidatos/<string:id>",methods=['PUT'])
+def modificarUsuario(id):
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos/'+id
+    response = requests.put(url, headers=headers, json=data)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/candidatos/<string:id>",methods=['DELETE'])
+def eliminarUsuario(id):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/candidatos/' + id
     print(url)
     response =requests.delete(url, headers=headers)
     return jsonify(response.status_code==204)
