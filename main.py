@@ -151,7 +151,7 @@ def crearMesas():
     return jsonify(json)
 
 @app.route("/mesas/<string:id>",methods=['GET'])
-def getMesas(id):
+def getMesas2(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/mesas/'+id
     response = requests.get(url, headers=headers)
@@ -185,7 +185,7 @@ def getResultados():
     json = response.json()
     return jsonify(json)
 
-@app.route("/resultados/candidatos/<string:cedula_candidato>/mesas/<string:numero_mesa",methods=['POST'])
+@app.route("/resultados/candidatos/<string:cedula_candidato>/mesas/<string:numero_mesa>",methods=['POST'])
 def crearResultados():
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
@@ -200,7 +200,7 @@ def crearResultados():
 
 
 @app.route("/partidos", methods=['GET'])
-def getUsuarios():
+def getUsuarios4():
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/partidos'
     response = requests.get(url, headers=headers)
@@ -209,7 +209,7 @@ def getUsuarios():
 
 
 @app.route("/partidos", methods=['POST'])
-def crearUsuario():
+def crearUsuario6():
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/partidos'
@@ -220,7 +220,7 @@ def crearUsuario():
 
 
 @app.route("/partidos/<string:id>", methods=['GET'])
-def getUsuario(id):
+def getUsuario2(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/partidos/'+id
     response = requests.get(url, headers=headers)
@@ -229,7 +229,7 @@ def getUsuario(id):
 
 
 @app.route("/partidos/<string:id>", methods=['PUT'])
-def modificarUsuario(id):
+def modificarUsuario234(id):
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/partidos/'+id
@@ -239,7 +239,7 @@ def modificarUsuario(id):
 
 
 @app.route("/partidos/<string:id>", methods=['DELETE'])
-def eliminarUsuario(id):
+def eliminarUsuario77657(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/partidos/' + id
     print(url)
