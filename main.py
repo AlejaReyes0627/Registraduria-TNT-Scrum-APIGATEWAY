@@ -141,7 +141,7 @@ def getMesas():
     return jsonify(json)
 
 @app.route("/mesas",methods=['POST'])
-def crearUsuario():
+def crearMesas():
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/mesas'
@@ -151,7 +151,7 @@ def crearUsuario():
     return jsonify(json)
 
 @app.route("/mesas/<string:id>",methods=['GET'])
-def getUsuario(id):
+def getMesas(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/mesas/'+id
     response = requests.get(url, headers=headers)
@@ -159,7 +159,7 @@ def getUsuario(id):
     return jsonify(json)
 
 @app.route("/mesas/<string:id>",methods=['PUT'])
-def modificarUsuario(id):
+def modificarMesas(id):
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/mesas/'+id
@@ -168,12 +168,124 @@ def modificarUsuario(id):
     return jsonify(json)
 
 @app.route("/mesas/<string:id>",methods=['DELETE'])
-def eliminarUsuario(id):
+def eliminarMesas(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resgistraduria"] + '/mesas/' + id
     print(url)
     response =requests.delete(url, headers=headers)
     return jsonify(response.status_code==204)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#################################RESULTADOS#########################################
+
+
+@app.route("/resultados",methods=['GET'])
+def getResultados():
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/resultados'
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/resultados/candidatos/<string:cedula_candidato>/mesas/<string:numero_mesa",methods=['POST'])
+def crearResultados():
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resgistraduria"] + '/resultados/candidatos/<string:cedula_candidato>/mesas/<string:numero_mesa'
+    response = requests.post(url, headers=headers,json=data)
+    json = response.json()
+    print(json)
+    return jsonify(json)
+
+
 
 @app.route("/", methods=['GET'])
 def test():
