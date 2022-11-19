@@ -132,45 +132,45 @@ def eliminarUsuario(id):
 #################################MESAS#########################################
 
 
-@app.route("/candidatos",methods=['GET'])
-def getUsuarios():
+@app.route("/mesas",methods=['GET'])
+def getMesas():
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resgistraduria"] + '/candidatos'
+    url = dataConfig["url-backend-resgistraduria"] + '/mesas'
     response = requests.get(url, headers=headers)
     json = response.json()
     return jsonify(json)
 
-@app.route("/candidatos",methods=['POST'])
+@app.route("/mesas",methods=['POST'])
 def crearUsuario():
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resgistraduria"] + '/candidatos'
+    url = dataConfig["url-backend-resgistraduria"] + '/mesas'
     response = requests.post(url, headers=headers,json=data)
     json = response.json()
     print(json)
     return jsonify(json)
 
-@app.route("/candidatos/<string:id>",methods=['GET'])
+@app.route("/mesas/<string:id>",methods=['GET'])
 def getUsuario(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resgistraduria"] + '/candidatos/'+id
+    url = dataConfig["url-backend-resgistraduria"] + '/mesas/'+id
     response = requests.get(url, headers=headers)
     json = response.json()
     return jsonify(json)
 
-@app.route("/candidatos/<string:id>",methods=['PUT'])
+@app.route("/mesas/<string:id>",methods=['PUT'])
 def modificarUsuario(id):
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resgistraduria"] + '/candidatos/'+id
+    url = dataConfig["url-backend-resgistraduria"] + '/mesas/'+id
     response = requests.put(url, headers=headers, json=data)
     json = response.json()
     return jsonify(json)
 
-@app.route("/candidatos/<string:id>",methods=['DELETE'])
+@app.route("/mesas/<string:id>",methods=['DELETE'])
 def eliminarUsuario(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resgistraduria"] + '/candidatos/' + id
+    url = dataConfig["url-backend-resgistraduria"] + '/mesas/' + id
     print(url)
     response =requests.delete(url, headers=headers)
     return jsonify(response.status_code==204)
