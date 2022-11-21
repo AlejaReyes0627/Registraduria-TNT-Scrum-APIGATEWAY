@@ -129,12 +129,12 @@ def eliminarUsuario(id):
     response =requests.delete(url, headers=headers)
     return jsonify(response.status_code==204)
 
-@app.route("/candidatos/<string:id>/partidos/<string:id_partidos>",methods=['PUT'])
-def editarUsuario(id,id_partidos):
+@app.route("/candidatos/<string:id>/partidos/<string:id2>",methods=['PUT'])
+def editarUsuario(id,id2):
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resgistraduria"] + "/candidatos/" + id + "/partidos/" + id_partidos
+    url = dataConfig["url-backend-resgistraduria"] + "/candidatos/" + id + "/partidos/" + id2
     print(url)
-    response =requests.delete(url, headers=headers)
+    response =requests.put(url, headers=headers)
     return jsonify(response.status_code==204)
 
 #################################MESAS#########################################
